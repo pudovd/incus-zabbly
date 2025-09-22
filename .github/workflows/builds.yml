@@ -31,7 +31,6 @@ jobs:
       - image-${{ matrix.os }}
 
     env:
-#      MAKEFLAGS: "-j 14"
       OS_ARCH: ${{ matrix.arch }}
       OS_NAME: ${{ matrix.os }}
       HOME: "/root/"
@@ -41,6 +40,7 @@ jobs:
       LD_LIBRARY_PATH: "/opt/incus/lib/"
       CPATH: "/opt/incus/include/"
       PATH: "/opt/incus/bin:/root/.cargo/bin:/usr/local/go/bin:/usr/local/node/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
+      #      MAKEFLAGS: "-j 14"
 
       # Linux Containers projects
       DISTROBUILDER_TAG: "distrobuilder-3.2"
