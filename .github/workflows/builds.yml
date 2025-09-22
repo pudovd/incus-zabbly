@@ -173,7 +173,7 @@ jobs:
           [ "${OS_ARCH}" = "arm64" ] && NODE_ARCH=arm64
 
 
-          mkdir /usr/local/node/
+          mkdir -p /usr/local/node/
           curl -sL "https://nodejs.org/dist/v22.11.0/node-v22.11.0-linux-${NODE_ARCH}.tar.xz" | tar -C /usr/local/node/ -Jx --strip-components=1
 
       - name: Build environment
