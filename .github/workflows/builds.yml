@@ -54,7 +54,8 @@ jobs:
       # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1106535
       # https://github.com/tianocore/edk2/tree/edk2-stable202402/UnitTestFrameworkPkg/Library/SubhookLib
       # We can't download submodule now :(
-      EDK2_TAG: "edk2-stable202402"
+      # EDK2_TAG: "edk2-stable202402"
+      EDK2_TAG: "edk2-stable202411"
       GOLANG_TAG: "go1.25.1"
       LEGO_TAG: "v4.25.2"
       LIBTPMS_TAG: "v0.10.1"
