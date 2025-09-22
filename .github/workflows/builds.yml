@@ -453,6 +453,7 @@ jobs:
           patch -p1 < "${REPO}/patches/edk2-0001-force-DUID-LLT.patch"
           cp "${REPO}/patches/edk2-0002-logo.bmp" MdeModulePkg/Logo/Logo.bmp
           patch -p1 < "${REPO}/patches/edk2-0003-boot-delay.patch"
+          patch -p1 < "${REPO}/patches/edk2-0004-gcc-errors.patch"
           patch -p1 < "${REPO}/patches/edk2-0005-Revert-ArmVirtPkg-make-EFI_LOADER_DATA-non-executabl.patch"
           patch -p1 < "${REPO}/patches/edk2-0006-disable-EFI-memory-attributes-protocol.patch"
           patch -p1 < "${REPO}/patches/edk2-0007-EnrollDefaultKeys-Add-new-Microsoft-KEK-DB.patch"
