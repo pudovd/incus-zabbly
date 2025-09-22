@@ -182,6 +182,7 @@ jobs:
 
       - name: Build environment
         run: |
+          rm -rf /root/go/pkg/
           rm -rf /build/
           mkdir /build/
           mkdir -p \
