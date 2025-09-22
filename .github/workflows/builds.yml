@@ -343,6 +343,7 @@ jobs:
           mkdir -p /opt/incus/share/locale
           cp po/*.mo /opt/incus/share/locale/
 
+          make doc-setup
           make doc
           cp -R doc/html /opt/incus/doc
 
