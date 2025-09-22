@@ -31,7 +31,7 @@ jobs:
       - image-${{ matrix.os }}
 
     env:
-      MAKEFLAGS: "-j 14"
+#      MAKEFLAGS: "-j 14"
       OS_ARCH: ${{ matrix.arch }}
       OS_NAME: ${{ matrix.os }}
       HOME: "/root/"
@@ -211,7 +211,7 @@ jobs:
           git clone https://github.com/NVIDIA/libnvidia-container /build/libnvidia-container --depth 1 -b "${NVIDIA_CONTAINER_TAG}"
           git clone https://github.com/stefanberger/libtpms /build/libtpms --depth 1 -b "${LIBTPMS_TAG}"
           git clone https://github.com/stefanberger/swtpm /build/swtpm --depth 1 -b "${SWTPM_TAG}"
-          git clone https://github.com/tianocore/edk2 /build/edk2 --recurse-submodules --shallow-submodules --depth 1 -b "${EDK2_TAG}"
+#          git clone https://github.com/tianocore/edk2 /build/edk2 --recurse-submodules --shallow-submodules --depth 1 -b "${EDK2_TAG}"
           git clone https://github.com/truenas/truenas_incus_ctl /build/truenas_incus_ctl --depth 1 -b "${TRUENAS_INCUS_CTL_TAG}"
           git clone https://gitlab.com/qemu-project/qemu /build/qemu --depth 1 -b "${QEMU_TAG}"
           git clone https://gitlab.com/qemu-project/seabios /build/seabios --depth 1 -b "${SEABIOS_TAG}"
@@ -219,6 +219,9 @@ jobs:
 
           mkdir /build/nasm/
           curl -sL "https://www.nasm.us/pub/nasm/releasebuilds/$(echo ${NASM_TAG} | cut -d- -f2)/${NASM_TAG}.tar.gz" --resolve www.nasm.us:443:198.137.202.136 | tar -C /build/nasm/ -zx --strip-components=1
+
+          mkdir /build/edk2
+          curl -sL "https://github.com/tianocore/edk2/archive/refs/tags/${EDK2_TAG}.tar.gz" | tar -C /build/edk2/ -zx --strip-components=1
 
       - name: Build liburing
         run: |
