@@ -56,7 +56,7 @@ jobs:
       # https://github.com/tianocore/edk2/tree/edk2-stable202402/UnitTestFrameworkPkg/Library/SubhookLib
       # We can't download submodule now :(
       # EDK2_TAG: "edk2-stable202402"
-      EDK2_TAG: "edk2-stable202508"
+      EDK2_TAG: "edk2-stable202411"
       GOLANG_TAG: "go1.25.1"
       LEGO_TAG: "v4.25.2"
       LIBTPMS_TAG: "v0.10.1"
@@ -343,7 +343,6 @@ jobs:
           mkdir -p /opt/incus/share/locale
           cp po/*.mo /opt/incus/share/locale/
 
-          make doc-setup
           make doc
           cp -R doc/html /opt/incus/doc
 
@@ -510,8 +509,8 @@ jobs:
             "/opt/incus/share/qemu/OVMF_VARS.4MB.fd" \
             -DFD_SIZE_4MB
 
-          # ln -s OVMF_CODE.4MB.fd /opt/incus/share/qemu/OVMF_CODE.fd
-          # ln -s OVMF_VARS.4MB.fd /opt/incus/share/qemu/OVMF_VARS.fd
+          ln -s OVMF_CODE.4MB.fd /opt/incus/share/qemu/OVMF_CODE.fd
+          ln -s OVMF_VARS.4MB.fd /opt/incus/share/qemu/OVMF_VARS.fd
 
       - name: Build libtmps
         run: |
