@@ -510,8 +510,8 @@ jobs:
             "/opt/incus/share/qemu/OVMF_VARS.4MB.fd" \
             -DFD_SIZE_4MB
 
-          ln -s OVMF_CODE.4MB.fd /opt/incus/share/qemu/OVMF_CODE.fd
-          ln -s OVMF_VARS.4MB.fd /opt/incus/share/qemu/OVMF_VARS.fd
+          # ln -s OVMF_CODE.4MB.fd /opt/incus/share/qemu/OVMF_CODE.fd
+          # ln -s OVMF_VARS.4MB.fd /opt/incus/share/qemu/OVMF_VARS.fd
 
       - name: Build libtmps
         run: |
