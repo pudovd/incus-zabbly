@@ -337,11 +337,11 @@ jobs:
               GOARCH=arm64 GOOS=windows CGO_ENABLED=0 go build -o "/opt/incus/agent/incus-agent.windows.aarch64" -tags=agent,netgo github.com/lxc/incus/v6/cmd/incus-agent
           fi
 
-          make build-mo
+          make -j 14 build-mo
           mkdir -p /opt/incus/share/locale
           cp po/*.mo /opt/incus/share/locale/
 
-          make doc
+          make -j 14 doc
           cp -R doc/html /opt/incus/doc
 
           mkdir -p /opt/incus/share/completions/
@@ -373,7 +373,7 @@ jobs:
       - name: Build CRIU
         run: |
           cd /build/criu
-          make WERROR=0
+          make -j 14 WERROR=0
           cp criu/criu /opt/incus/bin/
 
       - name: Build libnvidia-container
@@ -383,7 +383,7 @@ jobs:
           cd /build/libnvidia-container
           patch -p1 --forward < "${REPO}/patches/nvidia-0001-Fix-for-22.04-build.patch" || true
           patch -p1 --forward < "${REPO}/patches/nvidia-0002-pre-load-libdl.patch" || true
-          make prefix=/
+          make -j 14 prefix=/
 
           mkdir -p /build/target/libnvidia-container
           DESTDIR=/build/target/libnvidia-container make install prefix=/
@@ -394,13 +394,13 @@ jobs:
       - name: Build minio
         run: |
           cd /build/minio
-          make build
+          make -j 14 build
           cp minio /opt/incus/bin/
 
       - name: Build minio client
         run: |
           cd /build/mc
-          make build
+          make -j 14 build
           cp mc /opt/incus/bin/
 
       - name: Build seabios
@@ -425,7 +425,7 @@ jobs:
           echo "CONFIG_FLOPPY=n" >> .config
           echo "CONFIG_FLASH_FLOPPY=n" >> .config
           make oldnoconfig V=1
-          make V=1 PYTHON=python3
+          make -j 14 V=1 PYTHON=python3
 
           mkdir -p /opt/incus/share/qemu/
           cp out/bios.bin /opt/incus/share/qemu/seabios.bin
@@ -478,7 +478,7 @@ jobs:
               (
               cat << EOF
                   . ./edksetup.sh
-                  make -C BaseTools ARCH=${EDK2_ARCH}
+                  make -j 14 -C BaseTools ARCH=${EDK2_ARCH}
                   build -a ${EDK2_ARCH} -t GCC5 -b RELEASE -p ${EDK2_PKG} \
                     -DSMM_REQUIRE=TRUE \
                     -DSECURE_BOOT_ENABLE=TRUE \
@@ -605,7 +605,7 @@ jobs:
                   --enable-vhost-net \
                   --enable-vhost-user \
                   --enable-virtfs
-          make
+          make -j 14
 
           mkdir -p /build/target/qemu/
           DESTDIR=/build/target/qemu/ make install
