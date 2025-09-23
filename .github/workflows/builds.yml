@@ -385,7 +385,7 @@ jobs:
           patch -p1 --forward < "${REPO}/patches/nvidia-0002-pre-load-libdl.patch" || true
           make prefix=/
 
-          mkdir /build/target/libnvidia-container
+          mkdir -p /build/target/libnvidia-container
           DESTDIR=/build/target/libnvidia-container make install prefix=/
           rsync -a /build/target/libnvidia-container/bin/ /opt/incus/bin/
           rsync -a /build/target/libnvidia-container/include/ /opt/incus/include/
