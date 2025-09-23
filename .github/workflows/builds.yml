@@ -341,7 +341,7 @@ jobs:
           mkdir -p /opt/incus/share/locale
           cp po/*.mo /opt/incus/share/locale/
 
-          make -j 14 doc
+          make doc
           cp -R doc/html /opt/incus/doc
 
           mkdir -p /opt/incus/share/completions/
