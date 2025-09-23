@@ -300,7 +300,7 @@ jobs:
           rsync -a /build/target/lxcfs/opt/incus/lib/ /opt/incus/lib/
 
           sed -i "s#/var/lib/lxcfs#/var/lib/incus-lxcfs#g" /opt/incus/share/lxcfs/lxc.mount.hook
-          patch -p1 /opt/incus/share/lxcfs/lxc.mount.hook < "${REPO}/patches/lxcfs-0001-hook.patch"
+          patch -p1 --forward /opt/incus/share/lxcfs/lxc.mount.hook < "${REPO}/patches/lxcfs-0001-hook.patch" || true
 
       - name: Build Incus
         run: |
@@ -381,8 +381,8 @@ jobs:
           REPO="${PWD}"
 
           cd /build/libnvidia-container
-          patch -p1 < "${REPO}/patches/nvidia-0001-Fix-for-22.04-build.patch"
-          patch -p1 < "${REPO}/patches/nvidia-0002-pre-load-libdl.patch"
+          patch -p1 --forward < "${REPO}/patches/nvidia-0001-Fix-for-22.04-build.patch" || true
+          patch -p1 --forward < "${REPO}/patches/nvidia-0002-pre-load-libdl.patch" || true
           make prefix=/
 
           mkdir /build/target/libnvidia-container
@@ -435,7 +435,7 @@ jobs:
           REPO="${PWD}"
 
           cd /build/nasm
-          patch -p1 < "${REPO}/patches/nasm-0000-disable-manpages.patch"
+          patch -p1 --forward < "${REPO}/patches/nasm-0000-disable-manpages.patch" || true
           ./configure --prefix=/opt/incus
           make
 
@@ -448,14 +448,14 @@ jobs:
           REPO="${PWD}"
 
           cd /build/edk2
-          patch -p1 < "${REPO}/patches/edk2-0001-force-DUID-LLT.patch"
+          patch -p1 --forward < "${REPO}/patches/edk2-0001-force-DUID-LLT.patch" || true
           cp "${REPO}/patches/edk2-0002-logo.bmp" MdeModulePkg/Logo/Logo.bmp
-          patch -p1 < "${REPO}/patches/edk2-0003-boot-delay.patch"
-          patch -p1 < "${REPO}/patches/edk2-0004-gcc-errors.patch"
-          patch -p1 < "${REPO}/patches/edk2-0005-Revert-ArmVirtPkg-make-EFI_LOADER_DATA-non-executabl.patch"
-          patch -p1 < "${REPO}/patches/edk2-0006-disable-EFI-memory-attributes-protocol.patch"
-          patch -p1 < "${REPO}/patches/edk2-0007-EnrollDefaultKeys-Add-new-Microsoft-KEK-DB.patch"
-          patch -p1 < "${REPO}/patches/edk2-0008-disable-UEFI-shell-under-SecureBoot.patch"
+          patch -p1 --forward < "${REPO}/patches/edk2-0003-boot-delay.patch" || true
+          patch -p1 --forward < "${REPO}/patches/edk2-0004-gcc-errors.patch" || true
+          patch -p1 --forward < "${REPO}/patches/edk2-0005-Revert-ArmVirtPkg-make-EFI_LOADER_DATA-non-executabl.patch" || true
+          patch -p1 --forward < "${REPO}/patches/edk2-0006-disable-EFI-memory-attributes-protocol.patch" || true
+          patch -p1 --forward < "${REPO}/patches/edk2-0007-EnrollDefaultKeys-Add-new-Microsoft-KEK-DB.patch" || true
+          patch -p1 --forward < "${REPO}/patches/edk2-0008-disable-UEFI-shell-under-SecureBoot.patch" || true
 
           EDK2_ARCH="X64"
           EDK2_PKG="OvmfPkg/OvmfPkgX64.dsc"
@@ -561,7 +561,7 @@ jobs:
           REPO="${PWD}"
 
           cd /build/qemu
-          patch -p1 < "${REPO}/patches/qemu-0001-usb-net-mac.patch"
+          patch -p1 --forward < "${REPO}/patches/qemu-0001-usb-net-mac.patch" || true
 
           sed -i "s/^unset target_list$/target_list=\"$(uname -m)-softmmu\"/" configure
 
