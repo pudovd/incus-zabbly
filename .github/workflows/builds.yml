@@ -221,7 +221,7 @@ jobs:
         run: |
           cd /build/liburing
           ./configure --prefix=/opt/incus
-          make
+          make -j 14
 
           mkdir -p /build/target/liburing/
           DESTDIR=/build/target/liburing make install
@@ -233,7 +233,7 @@ jobs:
           cd /build/raft
           autoreconf -i
           ./configure --prefix=/opt/incus
-          make
+          make -j 14
 
           mkdir -p /build/target/raft/
           DESTDIR=/build/target/raft/ make install
@@ -245,7 +245,7 @@ jobs:
           cd /build/cowsql
           autoreconf -i
           ./configure --prefix=/opt/incus
-          make
+          make -j 14
 
           mkdir -p /build/target/cowsql/
           DESTDIR=/build/target/cowsql/ make install
@@ -437,7 +437,7 @@ jobs:
           cd /build/nasm
           patch -p1 --forward < "${REPO}/patches/nasm-0000-disable-manpages.patch" || true
           ./configure --prefix=/opt/incus
-          make
+          make -j 14
 
           mkdir -p /build/target/nasm/
           DESTDIR=/build/target/nasm make install
@@ -515,7 +515,7 @@ jobs:
           cd /build/libtpms
           ./autogen.sh
           ./configure --prefix=/opt/incus --with-tpm2 --with-openssl
-          make
+          make -j 14
 
           mkdir -p /build/target/libtpms/
           DESTDIR=/build/target/libtpms make install
@@ -527,7 +527,7 @@ jobs:
           cd /build/swtpm
           ./autogen.sh
           ./configure --prefix=/opt/incus --with-seccomp --with-openssl --without-cuse
-          make
+          make -j 14
 
           mkdir -p /build/target/swtpm/
           DESTDIR=/build/target/swtpm make install
