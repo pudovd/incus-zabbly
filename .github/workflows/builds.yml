@@ -607,7 +607,7 @@ jobs:
                   --enable-virtfs
           make
 
-          mkdir /build/target/qemu/
+          mkdir -p /build/target/qemu/
           DESTDIR=/build/target/qemu/ make install
           rsync -a /build/target/qemu/opt/incus/bin/ /opt/incus/bin/
           rsync -a /build/target/qemu/opt/incus/lib/ /opt/incus/lib/
