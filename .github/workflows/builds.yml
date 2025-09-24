@@ -167,8 +167,10 @@ jobs:
 
       - name: Install Rust
         run: |
+          /root/.cargo/bin/cargo --version || {
           curl -sL https://sh.rustup.rs -o install-rust.sh
           bash install-rust.sh -y
+          }
 
       - name: Install Node
         run: |
